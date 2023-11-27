@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.example.foodapp.Domain.foodDomain;
 import com.example.foodapp.R;
 
@@ -40,6 +42,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         holder.scoreText.setText("" + items.get(position).getScore());
         int drawableResourceId = holder.itemView.getResources().getIdentifier(items.get(position).getPicUrl(), "drawable", holder.itemView.getContext().getPackageName());
 
+        Glide.with(holder.itemView.getContext())
+                .load(drawableResourceId)
+                .transform(new GranularRoundedCorners(30,30,0,0))
+                .into(holder.pic);
     }
 
     @Override
